@@ -1,0 +1,45 @@
+mysite dir is the where all configuration settings of the app project
+
+myapp dir is one of the example app for the project
+
+in mysite dir:
+ - settings.py contains all config settings of the project
+ add each app path to INSTALLED_APPS section
+ - urls.py in this dir is to declare all routes of app into project 
+ - wsgi.py server settup of django, should NOT touch
+
+in myapp dir:
+ - admin.py is where we define admin user or other users to be able to edit 
+ database. permission , add users etc.
+ - apps.py where we declare the app here
+ - models.py where we define our database table in here , each model class
+ that we define here represent a table in sql
+ - tests.py where all unit tests in 
+ - views.py where we define route and view in each page.
+
+
+To add a page to an app:
+ - define a view which is a func in views.py of myapp dir 
+ - add a route in urls.py of myapp dir
+
+To add table or model in a database:
+ - add a class which is a table in sql database 
+ all the types of each field can be found on documentaions.
+ examples:
+    name = models.CharField(max_length=30)
+    age = models.IntegerField()
+    email = models.EmailField()
+    website = models.URLField()
+ - the run following command to add the table to database
+  python3 manage.py makemigrations <app name>
+  python3 manage.py migrate
+
+To manage databse in the app using GUI of django 
+ - there is a page call admin , add superuser and be able to edit database
+ - OR Drop tables of an app with migrations (Django >= 1.8):
+    $ python manage.py migrate appname zero
+    Recreate all the tables:
+    $ python manage.py syncdb
+
+Edit using sql command on shell 
+ - run `python manage.py dbshell`

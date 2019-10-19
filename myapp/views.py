@@ -17,4 +17,8 @@ def home(request):
             'email': obj.email,
             'url': obj.website
         })
+    # the data to pass to the template must in dictionary
     return render(request, 'home.html', {'data': data})
+
+def about(request):
+    return render(request, 'about.html')
